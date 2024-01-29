@@ -27,6 +27,9 @@ from model_util import load_models_xl, get_torch_device, torch_gc
 
 import gradio as gr
 
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning, message='TypedStorage is deprecated')
+
 # global variable
 MAX_SEED = np.iinfo(np.int32).max
 device = get_torch_device()
