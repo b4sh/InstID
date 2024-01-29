@@ -163,7 +163,7 @@ def load_diffusers_model(
     pretrained_model_name_or_path: str,
     v2: bool = False,
     clip_skip: Optional[int] = None,
-    weight_dtype: torch.dtype = torch.float32,
+    weight_dtype: torch.dtype = torch.float16,
 ) -> Tuple[CLIPTokenizer, CLIPTextModel, UNet2DConditionModel,]:
     if v2:
         tokenizer = CLIPTokenizer.from_pretrained(
@@ -211,7 +211,7 @@ def load_checkpoint_model(
     checkpoint_path: str,
     v2: bool = False,
     clip_skip: Optional[int] = None,
-    weight_dtype: torch.dtype = torch.float32,
+    weight_dtype: torch.dtype = torch.float16,
 ) -> Tuple[CLIPTokenizer, CLIPTextModel, UNet2DConditionModel,]:
     pipe = StableDiffusionPipeline.from_single_file(
         checkpoint_path,
@@ -247,7 +247,7 @@ def load_models(
     scheduler_name: str,
     v2: bool = False,
     v_pred: bool = False,
-    weight_dtype: torch.dtype = torch.float32,
+    weight_dtype: torch.dtype = torch.float16,
 ) -> Tuple[CLIPTokenizer, CLIPTextModel, UNet2DConditionModel, SchedulerMixin,]:
     if pretrained_model_name_or_path.endswith(
         ".ckpt"
@@ -273,7 +273,7 @@ def load_models(
 
 def load_diffusers_model_xl(
     pretrained_model_name_or_path: str,
-    weight_dtype: torch.dtype = torch.float32,
+    weight_dtype: torch.dtype = torch.float16,
 ) -> Tuple[List[CLIPTokenizer], List[SDXL_TEXT_ENCODER_TYPE], UNet2DConditionModel,]:
     # returns tokenizer, tokenizer_2, text_encoder, text_encoder_2, unet
 
@@ -320,7 +320,7 @@ def load_diffusers_model_xl(
 
 def load_checkpoint_model_xl(
     checkpoint_path: str,
-    weight_dtype: torch.dtype = torch.float32,
+    weight_dtype: torch.dtype = torch.float16,
 ) -> Tuple[List[CLIPTokenizer], List[SDXL_TEXT_ENCODER_TYPE], UNet2DConditionModel,]:
     pipe = StableDiffusionXLPipeline.from_single_file(
         checkpoint_path,
@@ -343,7 +343,7 @@ def load_checkpoint_model_xl(
 def load_models_xl(
     pretrained_model_name_or_path: str,
     scheduler_name: str,
-    weight_dtype: torch.dtype = torch.float32,
+    weight_dtype: torch.dtype = torch.float16,
     noise_scheduler_kwargs=None,
 ) -> Tuple[
     List[CLIPTokenizer],
