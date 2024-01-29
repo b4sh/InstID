@@ -216,6 +216,7 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         pipe.set_ip_adapter_scale(adapter_strength_ratio)
         pipe.enable_xformers_memory_efficient_attention()
         pipe.enable_vae_slicing()
+        pipe.enable_sequential_cpu_offload()
         images = pipe(
             prompt=prompt,
             negative_prompt=negative_prompt,
