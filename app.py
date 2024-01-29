@@ -79,7 +79,6 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
             pretrained_model_name_or_path,
             controlnet=controlnet,
             torch_dtype=dtype,
-            safety_checker=None,
             feature_extractor=None,
         ).to(device)
 
