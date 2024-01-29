@@ -1,0 +1,13 @@
+diffusers
+transformers
+accelerate
+safetensors
+einops
+onnxruntime-gpu
+spaces
+omegaconf
+peft
+huggingface-hub
+opencv-python
+insightface
+gradio
