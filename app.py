@@ -141,7 +141,7 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         return out_img_pil
 
     def resize_img(input_image, max_side=1024, min_side=1024, size=None, 
-                pad_to_max_side=False, mode=PIL.Image.BILINEAR, base_pixel_number=64):
+                pad_to_max_side=False, mode=PIL.Resampling.BILINEAR, base_pixel_number=64):
 
             w, h = input_image.size
             if size is not None:
