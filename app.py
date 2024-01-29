@@ -85,9 +85,6 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
             feature_extractor=None,
         ).to(device)
         
-        pipe.enable_xformers_memory_efficient_attention()
-        pipe.enable_vae_slicing()
-        
         pipe.scheduler = diffusers.EulerDiscreteScheduler.from_config(pipe.scheduler.config)
 
     pipe.load_ip_adapter_instantid(face_adapter)
@@ -217,6 +214,8 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         print(f"[Debug] Prompt: {prompt}, \n[Debug] Neg Prompt: {negative_prompt}")
         
         pipe.set_ip_adapter_scale(adapter_strength_ratio)
+        
+        pipe.enable_xformers_memory_efficient_attention()
         
         images = pipe(
             prompt=prompt,
