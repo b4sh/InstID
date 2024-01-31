@@ -87,6 +87,8 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         
         pipe.scheduler = diffusers.EulerDiscreteScheduler.from_config(pipe.scheduler.config)
 
+    pipe.enable_vae_slicing()
+    
     pipe.load_ip_adapter_instantid(face_adapter)
 
     def randomize_seed_fn(seed: int, randomize_seed: bool) -> int:
@@ -216,7 +218,6 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         pipe.set_ip_adapter_scale(adapter_strength_ratio)
         
         pipe.enable_xformers_memory_efficient_attention()
-        pipe.enable_vae_slicing()
         
         images = pipe(
             prompt=prompt,
