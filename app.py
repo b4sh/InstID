@@ -8,7 +8,6 @@ import torch
 import random
 import numpy as np
 import argparse
-import gc
 
 import PIL
 from PIL import Image
@@ -235,7 +234,6 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
 
         return images, gr.update(visible=True)
         
-        gc.collect()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
