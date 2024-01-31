@@ -49,7 +49,7 @@ controlnet_path = f'./checkpoints/ControlNetModel'
 # Load pipeline
 controlnet = ControlNetModel.from_pretrained(controlnet_path, torch_dtype=dtype)
 
-vae-fp16 = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+vaefp16 = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
 
 def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
 
@@ -70,7 +70,7 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
 
             scheduler = diffusers.EulerDiscreteScheduler.from_config(scheduler_kwargs)
             pipe = StableDiffusionXLInstantIDPipeline(
-                vae=vae-fp16,
+                vae=vaefp16,
                 text_encoder=text_encoders[0],
                 text_encoder_2=text_encoders[1],
                 tokenizer=tokenizers[0],
