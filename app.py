@@ -15,6 +15,7 @@ from PIL import Image
 import diffusers
 from diffusers.utils import load_image
 from diffusers.models import ControlNetModel
+from diffusers import DiffusionPipeline, AutoencoderKL
 
 from huggingface_hub import hf_hub_download
 
@@ -47,6 +48,8 @@ controlnet_path = f'./checkpoints/ControlNetModel'
 
 # Load pipeline
 controlnet = ControlNetModel.from_pretrained(controlnet_path, torch_dtype=dtype)
+
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
 
 def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
 
