@@ -236,7 +236,6 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
-            torch.cuda.ipc_collect()
 
     ### Description
     title = r"""
