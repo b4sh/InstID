@@ -171,7 +171,7 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         return p.replace("{prompt}", positive), n + ' ' + negative
 
     def generate_image(face_image, pose_image, prompt, negative_prompt, style_name, num_steps, identitynet_strength_ratio, adapter_strength_ratio, guidance_scale, seed, progress=gr.Progress(track_tqdm=True)):
-
+        with torch.no_grad():
         if face_image is None:
             raise gr.Error(f"Cannot find any input face image! Please upload the face image")
         
