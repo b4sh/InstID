@@ -90,10 +90,10 @@ def main(pretrained_model_name_or_path="stablediffusionapi/zavychroma_sdxl"):
         
         pipe.scheduler = diffusers.EulerDiscreteScheduler.from_config(pipe.scheduler.config)
 
-    pipe.load_ip_adapter_instantid(face_adapter)
     pipe.enable_model_cpu_offload()
+    pipe.load_ip_adapter_instantid(face_adapter)
     #pipe.enable_vae_slicing()
-    pipe.enable_xformers_memory_efficient_attention()    
+    #pipe.enable_xformers_memory_efficient_attention()    
     
     def randomize_seed_fn(seed: int, randomize_seed: bool) -> int:
         if randomize_seed:
