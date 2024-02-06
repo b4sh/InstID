@@ -42,7 +42,7 @@ app.prepare(ctx_id=0, det_size=(640, 640))
 face_adapter = f'checkpoints/ip-adapter.bin'
 controlnet_path = f'checkpoints/ControlNetModel'
 
-global pipe last_loaded_model_path
+global pipe, last_loaded_model_path
 
 controlnet = ControlNetModel.from_pretrained(controlnet_path, torch_dtype=dtype)
 
