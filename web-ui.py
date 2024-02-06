@@ -117,7 +117,6 @@ def load_model(pretrained_model_name_or_path):
     return pipe
 
 def reload_pipe_if_needed(model_input, model_dropdown):
-    nonlocal last_loaded_model_path
 
     # Trim the model_input to remove any leading or trailing whitespace
     model_input = model_input.strip() if model_input else None
