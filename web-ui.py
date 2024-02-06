@@ -377,9 +377,9 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
                         model_input = gr.Textbox(label="Hugging Face model repo name or local file full path", value="", placeholder="Enter model name or path")
                 with gr.Row():
                     with gr.Column():
-                        width = gr.Number(label="Width", value=1280, visible=True)
+                        width = gr.Number(label="Width", value=1024, visible=True)
                     with gr.Column():
-                        height = gr.Number(label="Height", value=1280, visible=True)
+                        height = gr.Number(label="Height", value=1024, visible=True)
                     with gr.Column():
                         num_images = gr.Number(label="How many Images to Generate", value=1, step=1, minimum=1, visible=True)
                 with gr.Row():            
