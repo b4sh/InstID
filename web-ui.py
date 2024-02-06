@@ -195,9 +195,7 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
         p, n = styles.get(style_name, styles[DEFAULT_STYLE_NAME])
         return p.replace("{prompt}", positive), n + ' ' + negative
 
-    def generate_image(face_image, pose_image, prompt, negative_prompt, style_name, num_steps, identitynet_strength_ratio, adapter_strength_ratio, guidance_scale, seed, width, height, num_images, model_input, model_dropdown, progress=gr.Progress(track_tqdm=True)):
-        # Reload the model if necessary based on the new conditions before generating the image
-        reload_pipe_if_needed(model_input, model_dropdown)
+    def generate_image(face_image, pose_image, prompt, negative_prompt, style_name, num_steps, identitynet_strength_ratio, adapter_strength_ratio, guidance_scale, seed, width, height, num_images, progress=gr.Progress(track_tqdm=True)):
 
         start_time = datetime.now()
         images = []
@@ -375,7 +373,7 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
                         inputs=[
                             face_files, pose_files, prompt, negative_prompt, style, num_steps, 
                             identitynet_strength_ratio, adapter_strength_ratio, guidance_scale, 
-                            seed, width, height, num_images, model_input, model_dropdown
+                            seed, width, height, num_images
                         ],
                         outputs=[gallery, usage_tips]
                     )
