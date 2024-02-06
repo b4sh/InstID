@@ -46,14 +46,6 @@ global pipe
 
 controlnet = ControlNetModel.from_pretrained(controlnet_path, torch_dtype=dtype)
 
-def get_model_names():
-    models_dir = 'models'
-    if not os.path.exists(models_dir):
-        os.makedirs(models_dir)
-    model_files = [f for f in os.listdir(models_dir) if f.endswith('.safetensors')]
-    return model_files
-
-
 def assign_last_params():
     global pipe
     #pipe.enable_model_cpu_offload()
@@ -371,12 +363,6 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
                 identitynet_strength_ratio = gr.Slider(label="IdentityNet strength (for fidelity)", minimum=0, maximum=1.5, step=0.05, value=0.80)
                 adapter_strength_ratio = gr.Slider(label="Image adapter strength (for detail)", minimum=0, maximum=1.5, step=0.05, value=0.80)
             with gr.Column():
-                model_names = get_model_names()
-                with gr.Row():
-                    with gr.Column():
-                        model_dropdown = gr.Dropdown(label="Select model from models folder", choices=model_names, value=None)
-                    with gr.Column():
-                        model_input = gr.Textbox(label="Hugging Face model repo name or local file full path", value="", placeholder="Enter model name or path")
                 with gr.Row():
                     with gr.Column():
                         width = gr.Number(label="Width", value=1024, visible=True)
