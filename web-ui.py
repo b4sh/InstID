@@ -62,8 +62,7 @@ def assign_last_params():
 
 def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
     global pipe  # Declare pipe as a global variable to manage it when the model changes
-    last_loaded_model_path = pretrained_model_name_or_path  # Track the last loaded model path
-
+    
     def clear_and_recreate_pipe():
         global pipe
         if 'pipe' in globals():
@@ -116,31 +115,6 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
     clear_and_recreate_pipe()  # Clear any existing pipe before loading a new one
     pipe = load_model(pretrained_model_name_or_path)
     assign_last_params()
-
-    
-    def reload_pipe_if_needed(model_input, model_dropdown):
-        nonlocal last_loaded_model_path
-
-        # Trim the model_input to remove any leading or trailing whitespace
-        model_input = model_input.strip() if model_input else None
-
-        # Determine the model to load
-        model_to_load = model_input if model_input else os.path.join('models', model_dropdown) if model_dropdown else None
-
-        # Return early if no model is selected or inputted
-        if not model_to_load:
-            print("No model selected or inputted. Please select or input a model. Default model will be used.")
-            return
-
-        # Proceed with reloading the model if it's different from the last loaded model
-        if model_to_load != last_loaded_model_path:
-            global pipe
-            print(f"Reloading model: {model_to_load}")
-            clear_and_recreate_pipe()  # Use the function to clear any existing pipe before loading a new one
-            pipe = load_model(model_to_load)
-            last_loaded_model_path = model_to_load
-            assign_last_params()
-
 
 
     def randomize_seed_fn(seed: int, randomize_seed: bool) -> int:
