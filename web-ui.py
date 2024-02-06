@@ -200,7 +200,7 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
         return out_img_pil
 
     def resize_img(input_image, max_side=1280, min_side=1024, size=None, 
-                pad_to_max_side=False, mode=PIL.Image.BILINEAR, base_pixel_number=64):
+                pad_to_max_side=False, mode=PIL.Image.Resampling.BILINEAR, base_pixel_number=64):
 
             w, h = input_image.size
             if size is not None:
@@ -376,15 +376,17 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", share=False):
                         model_input = gr.Textbox(label="Hugging Face model repo name or local file full path", value="", placeholder="Enter model name or path")
                 with gr.Row():
                     with gr.Column():
-                        width = gr.Number(label="Width", value=1280, visible=True)
+                        width = gr.Number(label="Width", value=1024, visible=True)
                     with gr.Column():
-                        height = gr.Number(label="Height", value=1280, visible=True)
+                        height = gr.Number(label="Height", value=1024, visible=True)
                     with gr.Column():
                         num_images = gr.Number(label="How many Images to Generate", value=1, step=1, minimum=1, visible=True)
                 with gr.Row():            
 
-                    num_steps = gr.Slider(label="Number of sample steps", minimum=20, maximum=100, step=1, value=30)
+                    num_steps = gr.Slider(label="Number of sample steps", minimum=20, maximum=100, step=1, value=22)
                     guidance_scale = gr.Slider(label="Guidance scale", minimum=0.1, maximum=10.0, step=0.1, value=5)
+                
+                with gr.Row():
                     seed = gr.Slider(label="Seed", minimum=0, maximum=MAX_SEED, step=1, value=42)
                     randomize_seed = gr.Checkbox(label="Randomize seed", value=True)
         
